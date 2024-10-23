@@ -32,7 +32,7 @@ const read = (req, res)=>{
 const update = (req, res) => {
     const { telefone_id, numero, tipo, cliente_id, } = req.body;
 
-    const query = 'UPDATE telefone SET numero = ?, tipo = ?, cliente_id = ?, WHERE telefone_id = ?';
+    const query = 'UPDATE telefone SET numero = ?, tipo = ?, cliente_id = ? WHERE telefone_id = ?';
     con.query(query, [telefone_id, numero, tipo, cliente_id], (err, result) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -42,7 +42,7 @@ const update = (req, res) => {
     })
 }
 
-const DELETE = (req, res) => {
+const deleteTelefone = (req, res) => {
     const { telefone_id } = req.params;
 
     const query = 'DELETE FROM telefone WHERE telefone_id = ?';
@@ -57,6 +57,8 @@ const DELETE = (req, res) => {
 
 module.exports = {
     create,
-    read
+    read,
+    update,
+    deleteTelefone
     
 }
