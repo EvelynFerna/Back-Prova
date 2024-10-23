@@ -36,8 +36,8 @@ const read = (req, res)=>{
 const update = (req, res) => {
     const { estacionamento_id, cliente_id, veiculo_placa,  veiculo_marca, veiculo_modelo, data_entrada, data_saida} = req.body;
 
-    const query = 'UPDATE estacionamento SET cliente_id = ?,  veiculo_placa= ?, veiculo_marca = ?, veiculo_modelo= ?, data_entrada = ?,data_saida= ?,  = ? WHERE estacionamento_id = ?';
-    con.query(query, [estacionamento_id, veiculo_placa, veiculo_marca, veiculo_modelo, data_entrada, data_saida, cliente_id], (err, result) => {
+    const query = 'UPDATE estacionamento SET cliente_id = ?,  veiculo_placa= ?, veiculo_marca = ?, veiculo_modelo= ?, data_entrada = ?,data_saida= ? WHERE estacionamento_id = ?';
+    con.query(query, [ cliente_id,veiculo_placa, veiculo_marca, veiculo_modelo, data_entrada, data_saida, estacionamento_id], (err, result) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {
@@ -46,7 +46,7 @@ const update = (req, res) => {
     })
 }
 
-const DELETE = (req, res) => {
+const deleteEstacionamento = (req, res) => {
     const { estacionamento_id } = req.params;
 
     const query = 'DELETE FROM estacionamento WHERE estacionamento_id = ?';
@@ -62,6 +62,7 @@ const DELETE = (req, res) => {
 
 module.exports = {
     create,
-    read
-    
+    read,
+    update,
+    deleteEstacionamento
 }
