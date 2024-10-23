@@ -45,7 +45,7 @@ const update = (req, res) => {
     })
 }
 
-const DELETE = (req, res) => {
+const deleteReservas = (req, res) => {
     const { reserva_id } = req.params;
 
     const query = 'DELETE FROM reservas WHERE reserva_id = ?';
@@ -60,6 +60,8 @@ const DELETE = (req, res) => {
 
 module.exports = {
     create,
-    read
+    read,
+    update,
+    deleteReservas
     
 }
